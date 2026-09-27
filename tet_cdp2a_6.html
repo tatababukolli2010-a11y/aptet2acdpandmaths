@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TET CDP Quiz — Q501-630</title>
+<style>
+:root{
+  --bg:#f6f5f2; --card:#ffffff; --ink:#1f2430; --muted:#6b7280;
+  --accent:#7c5cff; --accent2:#22b8a3; --good:#1e9e6d; --bad:#e0525a;
+  --border:#e7e5e0; --shadow:0 8px 30px rgba(20,20,40,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#15171f; --card:#1e2130; --ink:#eef0f6; --muted:#9aa1b4;
+    --border:#2b2f42; --shadow:0 8px 30px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#15171f; --card:#1e2130; --ink:#eef0f6; --muted:#9aa1b4;
+  --border:#2b2f42; --shadow:0 8px 30px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:"Segoe UI",system-ui,-apple-system,"Noto Sans Telugu",sans-serif;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.wrap{max-width:720px;margin:0 auto;padding:20px 16px 60px;}
+header{
+  position:sticky; top:0; top:env(safe-area-inset-top,0px);
+  background:var(--bg); z-index:5; padding:14px 16px 10px; margin:0 -16px 10px;
+  border-bottom:1px solid var(--border);
+}
+h1{font-size:1.05rem; margin:0 0 4px; font-weight:700; letter-spacing:.2px;}
+.sub{color:var(--muted); font-size:.82rem;}
+.progress-bar{height:6px; background:var(--border); border-radius:99px; margin-top:10px; overflow:hidden;}
+.progress-fill{height:100%; background:linear-gradient(90deg,var(--accent),var(--accent2)); width:0%; transition:width .3s;}
+.toolbar{display:flex; gap:8px; margin-top:10px; align-items:center; flex-wrap:wrap;}
+.lang-toggle{display:inline-flex; border:1px solid var(--border); border-radius:99px; overflow:hidden;}
+.lang-toggle button{
+  border:none; background:transparent; color:var(--muted); padding:6px 14px; font-size:.8rem;
+  font-weight:600; cursor:pointer;
+}
+.lang-toggle button.active{background:var(--accent); color:#fff;}
+.pill{font-size:.75rem; color:var(--muted); background:var(--card); border:1px solid var(--border); border-radius:99px; padding:5px 10px;}
+.jump{margin-left:auto; display:flex; gap:6px; align-items:center;}
+.jump input{width:56px; padding:5px 6px; border-radius:8px; border:1px solid var(--border); background:var(--card); color:var(--ink); font-size:.8rem;}
+.jump button{border:1px solid var(--border); background:var(--card); color:var(--ink); border-radius:8px; padding:5px 10px; font-size:.78rem; cursor:pointer;}
+
+.card{
+  background:var(--card); border:1px solid var(--border); border-radius:18px;
+  box-shadow:var(--shadow); padding:20px 18px; margin-bottom:16px;
+}
+.qmeta{display:flex; justify-content:space-between; color:var(--muted); font-size:.78rem; margin-bottom:8px;}
+.stem{font-size:1.08rem; font-weight:600; line-height:1.5; margin-bottom:16px;}
+.stem .te{font-weight:500; color:var(--muted); font-size:.95rem; display:block; margin-top:4px;}
+.opts{display:flex; flex-direction:column; gap:10px;}
+.opt{
+  display:flex; align-items:flex-start; gap:10px; padding:12px 14px; border-radius:12px;
+  border:1.5px solid var(--border); cursor:pointer; transition:.15s; background:transparent;
+}
+.opt:hover{border-color:var(--accent);}
+.opt .letter{
+  flex:0 0 24px; height:24px; border-radius:50%; border:1.5px solid var(--border);
+  display:flex; align-items:center; justify-content:center; font-size:.75rem; font-weight:700; color:var(--muted);
+}
+.opt-text{flex:1;}
+.opt-text .te{display:block; color:var(--muted); font-size:.86rem; margin-top:2px;}
+.opt.selected{border-color:var(--accent);}
+.opt.selected .letter{background:var(--accent); border-color:var(--accent); color:#fff;}
+.opt.correct{border-color:var(--good); background:rgba(30,158,109,.08);}
+.opt.correct .letter{background:var(--good); border-color:var(--good); color:#fff;}
+.opt.wrong{border-color:var(--bad); background:rgba(224,82,90,.08);}
+.opt.wrong .letter{background:var(--bad); border-color:var(--bad); color:#fff;}
+.opt.disabled{cursor:default;}
+
+.navrow{display:flex; gap:10px; margin-top:6px;}
+.btn{
+  flex:1; padding:12px; border-radius:12px; border:none; font-weight:700; font-size:.9rem; cursor:pointer;
+}
+.btn-primary{background:var(--accent); color:#fff;}
+.btn-secondary{background:var(--card); color:var(--ink); border:1.5px solid var(--border);}
+.btn:disabled{opacity:.4; cursor:not-allowed;}
+
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(38px,1fr)); gap:6px; margin-top:10px;}
+.gridbtn{
+  aspect-ratio:1; border-radius:8px; border:1px solid var(--border); background:var(--card); color:var(--muted);
+  font-size:.72rem; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+.gridbtn.answered{background:var(--accent); color:#fff; border-color:var(--accent);}
+.gridbtn.current{outline:2px solid var(--accent2); outline-offset:1px;}
+.gridbtn.correctmark{background:var(--good); border-color:var(--good); color:#fff;}
+.gridbtn.wrongmark{background:var(--bad); border-color:var(--bad); color:#fff;}
+
+.result{text-align:center; padding:30px 16px;}
+.result .score{font-size:2.4rem; font-weight:800; background:linear-gradient(90deg,var(--accent),var(--accent2)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.hidden{display:none !important;}
+footer{text-align:center; color:var(--muted); font-size:.72rem; margin-top:10px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>TET CDP Practice — Q501–630</h1>
+    <div class="sub" id="subline">130 bilingual questions</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="toolbar">
+      <div class="lang-toggle" id="langToggle">
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="te">TE</button>
+        <button data-lang="both">EN+TE</button>
+      </div>
+      <span class="pill" id="scorePill">Score: 0/0</span>
+      <div class="jump">
+        <input type="number" id="jumpInput" min="1" max="130" placeholder="#">
+        <button id="jumpBtn">Go</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="quizArea">
+    <div class="card" id="qCard">
+      <div class="qmeta"><span id="qIndex">Question 1 of 130</span><span id="qStatus"></span></div>
+      <div class="stem" id="stemBox"></div>
+      <div class="opts" id="optsBox"></div>
+    </div>
+    <div class="navrow">
+      <button class="btn btn-secondary" id="prevBtn">◀ Prev</button>
+      <button class="btn btn-primary" id="nextBtn">Next ▶</button>
+    </div>
+    <div class="grid" id="navGrid"></div>
+  </div>
+
+  <div class="card result hidden" id="resultCard">
+    <div>Quiz complete</div>
+    <div class="score" id="finalScore">0/130</div>
+    <div class="sub" id="finalSub"></div>
+    <div class="navrow" style="margin-top:16px;">
+      <button class="btn btn-secondary" id="reviewBtn">Review answers</button>
+      <button class="btn btn-primary" id="restartBtn">Restart quiz</button>
+    </div>
+  </div>
+
+  <footer>Telugu Development & Psychology (CDP) — TET Practice Question Bank</footer>
+</div>
+
+<script>
+const DATA = [{"id": 1, "orig": 501, "en": "Personal Guidance is not related to", "te": "వ్యక్తిగత మార్గదర్శకత్వం దీనికి సంబంధించినది కాదు", "opts_en": ["Adjustment problems", "Organisational problems", "Family problems", "Marital problems"], "opts_te": ["సర్దుబాటు సమస్యలు", "సంస్థాగత సమస్యలు", "కుటుంబ సమస్యలు", "వైవాహిక సమస్యలు"], "answer": 2}, {"id": 2, "orig": 502, "en": "Guidance given to the students to choose a suitable course", "te": "సరైన కోర్సును ఎంచుకోవడంలో విద్యార్థులకు అందించే మార్గదర్శకత్వం", "opts_en": ["Vocational guidance", "Educational guidance", "Personal guidance", "Sports guidance"], "opts_te": ["వృత్తి విద్యా మార్గదర్శకత్వం", "విద్యా మార్గదర్శకత్వం", "వ్యక్తిగత మార్గదర్శకత్వం", "క్రీడా మార్గదర్శకత్వం"], "answer": 2}, {"id": 3, "orig": 503, "en": "Negative aspect of mental health", "te": "మానసిక ఆరోగ్యానికి సంబంధించిన ఒక ప్రతికూల అంశం", "opts_en": ["Having stress", "Having adjustment", "Having good friends", "Having good sleep"], "opts_te": ["ఒత్తిడికి గురికావడం", "సర్దుబాటు కలిగి ఉండడం", "మంచి స్నేహితులను కలిగి ఉండడం", "మంచి నిద్రను కలిగి ఉండడం"], "answer": 1}, {"id": 4, "orig": 504, "en": "Positive aspect of mental health", "te": "మానసిక ఆరోగ్యానికి సంబంధించిన సానుకూల అంశం", "opts_en": ["Overthinking", "Malnutrition", "Adjustment to the surroundings", "Frustration"], "opts_te": ["అతి ఆలోచన", "పోషకాహార లోపం", "పరిసరాలతో సర్దుబాటు", "కుంఠనం"], "answer": 3}, {"id": 5, "orig": 505, "en": "In NEP – 2020 NEP means", "te": "NEP – 2020లో NEP అనగా", "opts_en": ["National Employment Policy", "National Examination Policy", "National Education Policy", "National Enrolment Policy"], "opts_te": ["జాతీయ ఉద్యోగ విధానం", "జాతీయ పరీక్షా విధానం", "జాతీయ విద్యా విధానం", "జాతీయ నమోదు విధానం"], "answer": 3}, {"id": 6, "orig": 506, "en": "The first education policy of the 21st century is", "te": "21వ శతాబ్దపు మొదటి విద్యా విధానం", "opts_en": ["PoA -1992", "NEP - 1986", "NEP - 1968", "NEP - 2020"], "opts_te": ["PoA -1992", "NEP - 1986", "NEP - 1968", "NEP - 2020"], "answer": 4}, {"id": 7, "orig": 507, "en": "In NEP – 2020, 5 + 3 + 3 + 4 structure is prescribed to the children of this age group (in years)", "te": "NEP – 2020లో, 5 + 3 + 3 + 4 నిర్మాణం ఈ వయో గ్రూపు (సంవత్సరాలలో) పిల్లలకు నిర్దేశించబడింది", "opts_en": ["4 - 12", "3 - 18", "6 - 14", "3 – 15"], "opts_te": ["4 - 12", "3 - 18", "6 - 14", "3 – 15"], "answer": 2}, {"id": 8, "orig": 508, "en": "NEP – 2020 emphasis this aspect", "te": "NEP – 2020 ప్రాముఖ్యత ఇచ్చే అంశం", "opts_en": ["Rote learning", "Examination preparation", "Teacher centred education", "21st century skills"], "opts_te": ["బట్టీ విధానం", "పరీక్షలకు సన్నద్ధత", "ఉపాధ్యాయ కేంద్రిత విద్య", "21వ శతాబ్ది నైపుణ్యాలు"], "answer": 4}, {"id": 9, "orig": 509, "en": "NCF – 2005 was designed by", "te": "NCF – 2005ను రూపొందించినది", "opts_en": ["SCERT", "DIET", "NCTE", "NCERT"], "opts_te": ["SCERT", "DIET", "NCTE", "NCERT"], "answer": 4}, {"id": 10, "orig": 510, "en": "NCF – 2005 stands for", "te": "NCF – 2005 అనగా", "opts_en": ["National Children Framework - 2005", "National Course Framework - 2005", "National Curriculum Framework - 2005", "National Class Framework - 2005"], "opts_te": ["జాతీయ శిశు చట్రం - 2005", "జాతీయ కోర్సు చట్రం - 2005", "జాతీయ పాఠ్యప్రణాళికా చట్రం - 2005", "జాతీయ తరగతి చట్రం - 2005"], "answer": 3}, {"id": 11, "orig": 511, "en": "National Education Policy – 2020 formulated this structure of education", "te": "జాతీయ విద్యా విధానం 2020 ఈ విద్యా నిర్మాణాన్ని ప్రతిపాదించింది", "opts_en": ["10 + 2 + 3", "11 + 1 + 3", "5 + 3 + 3 + 4", "10 + 3 + 3"], "opts_te": ["10 + 2 + 3", "11 + 1 + 3", "5 + 3 + 3 + 4", "10 + 3 + 3"], "answer": 3}, {"id": 12, "orig": 512, "en": "According to NEP – 2020 education starts at the age of", "te": "NEP – 2020 ప్రకారం విద్య ప్రారంభమయ్యే వయస్సు", "opts_en": ["3 years", "5 years", "6 years", "2 years"], "opts_te": ["3 సంవత్సరాలు", "5 సంవత్సరాలు", "6 సంవత్సరాలు", "2 సంవత్సరాలు"], "answer": 1}, {"id": 13, "orig": 513, "en": "NCF – FS 2022 is based on", "te": "NCF – FS 2022 దేనిపై ఆధారపడింది", "opts_en": ["NPE - 1986", "NCF - 2008", "RTE - 2009", "NEP - 2020"], "opts_te": ["NPE - 1986", "NCF - 2008", "RTE - 2009", "NEP - 2020"], "answer": 4}, {"id": 14, "orig": 514, "en": "NCTE", "te": "NCTEను విస్తరించండి", "opts_en": ["National Committee on Teacher Education", "National Council for Trade and Education", "National Council for Teacher Education", "National Conference on Teacher Empowerment"], "opts_te": ["జాతీయ ఉపాధ్యాయ విద్యా సంఘం", "జాతీయ వాణిజ్య మరియు విద్యా మండలి", "జాతీయ ఉపాధ్యాయ విద్యా మండలి", "ఉపాధ్యాయ సాధికారతపై జాతీయ సదస్సు"], "answer": 3}, {"id": 15, "orig": 515, "en": "APSCF aims at this", "te": "APSCF లక్ష్యంగా పెట్టుకున్నది", "opts_en": ["Developing memory skills", "Developing examination skills", "Holistic development", "Improve hand writing skills"], "opts_te": ["జ్ఞాపకశక్తి నైపుణ్యాలను అభివృద్ధి చేయడం", "పరీక్షా నైపుణ్యాలను అభివృద్ధి చేయడం", "సంపూర్ణాభివృద్ధి", "చేతిరాత నైపుణ్యాలను మెరుగుపరచడం"], "answer": 3}, {"id": 16, "orig": 516, "en": "NTA means", "te": "NTA అనగా", "opts_en": ["National Technological Assessment", "National Television Academy", "National Trade and Administration", "National Testing Agency"], "opts_te": ["జాతీయ సాంకేతిక మూల్యాంకనం", "జాతీయ టెలివిజన్ అకాడమీ", "జాతీయ వాణిజ్యం మరియు పరిపాలన", "జాతీయ పరీక్షా సంస్థ"], "answer": 4}, {"id": 17, "orig": 517, "en": "According to RTE – 2009 Act the following age group children have the right to compulsory education", "te": "RTE – 2009 చట్టం ప్రకారం ఈ కింది వయో గ్రూపు పిల్లలు నిర్బంధ విద్యా హక్కును కలిగి ఉన్నారు", "opts_en": ["5 – 9 years", "6 – 14 years", "4 – 12 years", "7 – 18 years"], "opts_te": ["5 – 9 సంవత్సరాలు", "6 – 14 సంవత్సరాలు", "4 – 12 సంవత్సరాలు", "7 – 18 సంవత్సరాలు"], "answer": 2}, {"id": 18, "orig": 518, "en": "Expand APSCF", "te": "APSCFను విస్తరించండి", "opts_en": ["Andhra Pradesh School Course Framework", "Andhra Pradesh School Curriculum Framework", "Andhra Pradesh State Children Framework", "Andhra Pradesh State Curriculum Framework"], "opts_te": ["ఆంధ్రప్రదేశ్ పాఠశాల కోర్సు చట్రం", "ఆంధ్రప్రదేశ్ పాఠశాల పాఠ్యప్రణాళికా చట్రం", "ఆంధ్రప్రదేశ్ రాష్ట్ర శిశు చట్రం", "ఆంధ్రప్రదేశ్ రాష్ట్ర పాఠ్యప్రణాళికా చట్రం"], "answer": 4}, {"id": 19, "orig": 519, "en": "NCF – FS 2022 was designed by", "te": "NCF – FS 2022ను రూపొందించినది", "opts_en": ["SCERT", "DIET", "NCERT", "SSA"], "opts_te": ["SCERT", "DIET", "NCERT", "SSA"], "answer": 3}, {"id": 20, "orig": 520, "en": "4 indicates this stage in NEP - 2020 structure of education 5 + 3 + 3 + 4,", "te": "NEP – 2020 విద్యా నిర్మాణం 5 + 3 + 3 + 4లో 4 అనేది ఈ దశను సూచిస్తుంది", "opts_en": ["Foundational level", "Secondary level", "Preparatory level", "Middle level"], "opts_te": ["పునాది స్థాయి", "మాధ్యమిక స్థాయి", "సన్నాహక స్థాయి", "మధ్య స్థాయి"], "answer": 2}, {"id": 21, "orig": 521, "en": "RTE Act was implemented from this year", "te": "RTE చట్టం ఈ సంవత్సరం నుండి అమలులోకి వచ్చింది", "opts_en": ["2009", "2008", "2010", "2005"], "opts_te": ["2009", "2008", "2010", "2005"], "answer": 3}, {"id": 22, "orig": 522, "en": "DIKSHA means", "te": "DIKSHA అనగా", "opts_en": ["Directorate of Information for Knowledge Sharing", "District Institute for Knowledge Sharing", "Department of Information for Knowledge Sharing", "Digital Infrastructure for Knowledge Sharing"], "opts_te": ["జ్ఞాన పంపిణీ కోసం సమాచార సంచాలకత్వం", "జ్ఞాన పంపిణీ కోసం జిల్లా సంస్థ", "జ్ఞాన పంపిణీ కోసం సమాచార శాఖ", "జ్ఞాన పంపిణీ కోసం డిజిటల్ మౌలిక సదుపాయం"], "answer": 4}, {"id": 23, "orig": 523, "en": "NEP – 2020 gives importance to", "te": "NEP – 2020 దీనికి ప్రాధాన్యతనిస్తుంది", "opts_en": ["Experiential Learning", "Memorization", "Learning to reading textbooks only", "Rote learning"], "opts_te": ["అనుభవాత్మక అభ్యసనం", "కంఠస్థం చేయడం", "పాఠ్యపుస్తకాలను చదవడం మాత్రమే నేర్చుకోవడం", "బట్టీ అభ్యసనం"], "answer": 1}, {"id": 24, "orig": 524, "en": "Anganwaadi education comes under this frame", "te": "అంగన్‌వాడీ విద్య ఈ చట్రం కిందికి వస్తుంది", "opts_en": ["Primary", "E.C.C.E", "High School", "Upper Primary"], "opts_te": ["ప్రాథమిక", "ప్రారంభ బాల్య సంరక్షణ మరియు విద్య (E.C.C.E)", "ఉన్నత పాఠశాల", "ప్రాథమికోన్నత"], "answer": 2}, {"id": 25, "orig": 525, "en": "Southern regional office of NCTE is in", "te": "NCTE దక్షిణ ప్రాంతీయ కార్యాలయం ఇక్కడ ఉంది", "opts_en": ["New Delhi", "Hyderabad", "Bengaluru", "Lucknow"], "opts_te": ["న్యూఢిల్లీ", "హైదరాబాద్", "బెంగళూరు", "లక్నో"], "answer": 3}, {"id": 26, "orig": 526, "en": "This is not an Assessment tool", "te": "ఇది మూల్యాంకన సాధనం కాదు", "opts_en": ["Essay Type Tests", "Interview", "Observation", "Time Table"], "opts_te": ["వ్యాస రూప పరీక్షలు", "ఇంటర్వ్యూ", "పరిశీలన", "టైమ్ టేబుల్"], "answer": 4}, {"id": 27, "orig": 527, "en": "Assessment carried out from time to time to know the progress of the children", "te": "పిల్లల ప్రగతిని తెలుసుకోవడానికి ఎప్పటికప్పుడు నిర్వహించే మూల్యాంకనం", "opts_en": ["Summative Assessment", "Formative Assessment", "Baseline Test", "Project work"], "opts_te": ["సంగ్రహణాత్మక మూల్యాంకనం", "నిర్మాణాత్మక మూల్యాంకనం", "మూలస్థాయి పరీక్ష", "ప్రాజెక్టు పని"], "answer": 2}, {"id": 28, "orig": 528, "en": "Number of times the Summative Assessment is conducted in schools", "te": "పాఠశాలల్లో సంగ్రహణాత్మక మూల్యాంకనం నిర్వహించే సార్లు", "opts_en": ["One Time", "Two Times", "Three Times", "Four Times"], "opts_te": ["ఒకసారి", "రెండుసార్లు", "మూడుసార్లు", "నాలుగుసార్లు"], "answer": 2}, {"id": 29, "orig": 529, "en": "Assessing the children's abilities as a part of daily teaching – learning process is", "te": "పిల్లల సామర్థ్యాలను రోజువారీ బోధనాభ్యసన ప్రక్రియలో భాగంగా మదింపు చేయడం", "opts_en": ["Assessment as Learning", "Assessment for Learning", "Assessment of Learning", "Assessment on Learning"], "opts_te": ["అభ్యసనంగా మూల్యాంకనం", "అభ్యసనం కోసం మూల్యాంకనం", "అభ్యసనం యొక్క మూల్యాంకనం", "అభ్యసనంపై మూల్యాంకనం"], "answer": 1}, {"id": 30, "orig": 530, "en": "Assessment used to understand the children's behaviour in a classroom", "te": "తరగతి గదిలో పిల్లల ప్రవర్తనను అర్థం చేసుకోవడానికి ఉపయోగించే మూల్యాంకనం", "opts_en": ["Written test", "Project work", "Observation", "Note books"], "opts_te": ["రాత పరీక్ష", "ప్రాజెక్టు పని", "పరిశీలన", "నోట్ పుస్తకాలు"], "answer": 3}, {"id": 31, "orig": 531, "en": "This is not correctly related to Summative Assessment", "te": "ఇది సంగ్రహణాత్మక మూల్యాంకనానికి సరిగ్గా సంబంధించినది కాదు", "opts_en": ["It is assessed in the form of examinations.", "It is conducted in a specific schedule.", "It reveals only about the result only.", "It is an internal classroom assessment"], "opts_te": ["ఇది పరీక్షల రూపంలో మదింపు చేయబడుతుంది", "ఇది నిర్దిష్ట షెడ్యూల్‌లో నిర్వహించబడుతుంది", "ఇది ఫలితం గురించి మాత్రమే తెలియజేస్తుంది", "ఇది అంతర్గత తరగతి గది మూల్యాంకనం"], "answer": 4}, {"id": 32, "orig": 532, "en": "This is not the main aim of Diagnostic Evaluation", "te": "ఇది నిర్ధారణాత్మక మూల్యాంకనం యొక్క ప్రధాన లక్ష్యం కాదు", "opts_en": ["Estimates the strengths and weaknesses among Students.", "Provides Qualitative Education.", "Identifies the hurdles among students.", "It is not useful to rectify the mistakes of Children. ."], "opts_te": ["విద్యార్థుల బలాలు, బలహీనతలను అంచనా వేస్తుంది", "గుణాత్మక విద్యను అందిస్తుంది", "విద్యార్థులలోని అవరోధాలను గుర్తిస్తుంది", "పిల్లల తప్పులను సరిదిద్దడానికి ఇది ఉపయోగపడదు"], "answer": 4}, {"id": 33, "orig": 533, "en": "Destiny of the Nation is shaped in the classroom', stated by", "te": "“దేశ భవితవ్యం తరగతి గదిలోనే రూపొందుతుంది” అని పేర్కొన్నది", "opts_en": ["Kothari Commission", "Radha Krishnan Commission", "University Commission", "Macaulay Report"], "opts_te": ["కొఠారి కమిషన్", "రాధాకృష్ణన్ కమిషన్", "యూనివర్సిటీ కమిషన్", "మెకాలే నివేదిక"], "answer": 1}, {"id": 34, "orig": 534, "en": "The process of preparing a report by observing and analysing a problem and its solution is called", "te": "ఒక సమస్యను, దాని పరిష్కారాన్ని పరిశీలించి, విశ్లేషించి ఒక నివేదికను తయారుచేసే ప్రక్రియను ఇలా అంటారు", "opts_en": ["Observation", "Project Work", "Interview", "Questionnaire"], "opts_te": ["పరిశీలన", "ప్రాజెక్టు పని", "ఇంటర్వ్యూ", "ప్రశ్నావళి"], "answer": 2}, {"id": 35, "orig": 535, "en": "Choose the wrong statement related to Assessment.", "te": "మూల్యాంకనానికి సంబంధించి సరికాని వాక్యాన్ని ఎంచుకోండి", "opts_en": ["Different tools are used for Assessment", "It is used in teaching – learning process", "It gives importance to knowledge construction", "It is done only through examinations"], "opts_te": ["మూల్యాంకనం కోసం వివిధ సాధనాలను ఉపయోగిస్తారు", "ఇది బోధనాభ్యసన ప్రక్రియలో ఉపయోగించబడుతుంది", "ఇది జ్ఞాన నిర్మాణానికి ప్రాధాన్యతనిస్తుంది", "ఇది పరీక్షల ద్వారా మాత్రమే జరుగుతుంది"], "answer": 4}, {"id": 36, "orig": 536, "en": "According to RTE 2009, this age group children should be given free and compulsory education (in years)", "te": "RTE 2009 ప్రకారం, ఈ వయో గ్రూపు పిల్లలకు ఉచిత, నిర్బంధ విద్యను అందించాలి (సంవత్సరాలలో)", "opts_en": ["1-14", "6-14", "3-14", "1-16"], "opts_te": ["1-14", "6-14", "3-14", "1-16"], "answer": 2}, {"id": 37, "orig": 537, "en": "CCE means", "te": "CCE అనగా", "opts_en": ["Comprehensive Curricular Evaluation", "Continuous Curricular Evaluation", "Comprehensive Continuous Evaluation", "Continuous Comprehensive Evaluation"], "opts_te": ["సమగ్ర పాఠ్యప్రణాళికా మూల్యాంకనం", "నిరంతర పాఠ్యప్రణాళికా మూల్యాంకనం", "సమగ్ర నిరంతర మూల్యాంకనం", "నిరంతర సమగ్ర మూల్యాంకనం"], "answer": 4}, {"id": 38, "orig": 538, "en": "Aim of Continuous Comprehensive Evaluation", "te": "నిరంతర సమగ్ర మూల్యాంకనం యొక్క లక్ష్యం", "opts_en": ["Rote learning", "Remembering Information", "Analytical Thinking", "Securing good marks"], "opts_te": ["బట్టీ అభ్యసనం", "సమాచారాన్ని గుర్తుంచుకోవడం", "విశ్లేషణాత్మక ఆలోచన", "మంచి మార్కులు సాధించడం"], "answer": 3}, {"id": 39, "orig": 539, "en": "Progress report of the child tells", "te": "పిల్లల ప్రగతి నివేదిక దీనిని తెలియజేస్తుంది", "opts_en": ["Holistic development of the students", "Only the marks of the students", "Information about the lessons", "Information about the teachers"], "opts_te": ["విద్యార్థుల సంపూర్ణాభివృద్ధి గురించి", "విద్యార్థుల మార్కులు మాత్రమే", "పాఠ్యాంశాలకు సంబంధించిన సమాచారం", "ఉపాధ్యాయుల గురించి సమాచారం"], "answer": 1}, {"id": 40, "orig": 540, "en": "This is not a quality of a good test", "te": "ఇది మంచి పరీక్ష యొక్క లక్షణం కాదు", "opts_en": ["Validity", "Reliability", "Objectivity", "Subjectivity"], "opts_te": ["సాధుత్వం", "విశ్వసనీయత", "నిష్పాక్షికత", "ఆత్మాశ్రయత"], "answer": 3}, {"id": 41, "orig": 541, "en": "Assessment done after the completion of a course", "te": "కోర్సు పూర్తయిన తర్వాత చేసే మూల్యాంకనం", "opts_en": ["Formative Assessment", "Baseline Test", "Half yearly Examination", "Summative Assessment"], "opts_te": ["నిర్మాణాత్మక మూల్యాంకనం", "మూలస్థాయి పరీక్ష", "అర్ధవార్షిక పరీక్ష", "సంగ్రహణాత్మక మూల్యాంకనం"], "answer": 4}, {"id": 42, "orig": 542, "en": "Item that is not related to Response Assessment", "te": "ప్రతిస్పందన మూల్యాంకనానికి సంబంధించనిది", "opts_en": ["Multiple – Choice Questions", "Binary Choice Questions", "Natural Observation", "Matching Type Questions"], "opts_te": ["బహుళైచ్ఛిక ప్రశ్నలు", "ద్వంద్వ ఎంపిక ప్రశ్నలు", "సహజ పరిశీలన", "జతపరచు ప్రశ్నలు"], "answer": 3}, {"id": 43, "orig": 543, "en": "This tool is used to know whether a concept exists or not", "te": "ఒక భావన ఉందా లేదా అని తెలుసుకోవడానికి ఉపయోగించే సాధనం", "opts_en": ["Teacher Diary", "Student's Diary", "Checklist", "Portfolio"], "opts_te": ["ఉపాధ్యాయ డైరీ", "విద్యార్థి డైరీ", "తనిఖీ జాబితా", "పోర్ట్‌ఫోలియో"], "answer": 3}, {"id": 44, "orig": 544, "en": "The Assessment that declares the final judgement on a childrens's learning achievement", "te": "పిల్లల అభ్యసన సాధనపై తుది తీర్పును ప్రకటించే మూల్యాంకనం", "opts_en": ["Assessment of Learning", "Assessment for Learning", "Assessment as Learning", "Assessment by Learning"], "opts_te": ["అభ్యసనం యొక్క మూల్యాంకనం", "అభ్యసనం కోసం మూల్యాంకనం", "అభ్యసనంగా మూల్యాంకనం", "అభ్యసనం ద్వారా మూల్యాంకనం"], "answer": 1}, {"id": 45, "orig": 545, "en": "This type of questions help students to express their own views", "te": "ఈ రకమైన ప్రశ్నలు విద్యార్థులు తమ సొంత అభిప్రాయాలను వ్యక్తపరచడానికి సహాయపడతాయి", "opts_en": ["Fill in the blanks", "Essay Type Questions", "Matching", "Multiple Choice Questions"], "opts_te": ["ఖాళీలను పూరించండి", "వ్యాస రూప ప్రశ్నలు", "జతపరచడం", "బహుళైచ్ఛిక ప్రశ్నలు"], "answer": 2}, {"id": 46, "orig": 546, "en": "Assessment conducted at the end of the Academic Year", "te": "విద్యా సంవత్సరం చివరిలో నిర్వహించే మూల్యాంకనం", "opts_en": ["Baseline Test", "Formative Assessment", "Summative Assessment", "Assignment"], "opts_te": ["మూలస్థాయి పరీక్ష", "నిర్మాణాత్మక మూల్యాంకనం", "సంగ్రహణాత్మక మూల్యాంకనం", "అసైన్మెంట్"], "answer": 3}, {"id": 47, "orig": 547, "en": "Measure of central tendency", "te": "కేంద్రీయ స్థాన కొలత", "opts_en": ["Arithmetic Mean", "Variance", "Standard Derivation", "Range"], "opts_te": ["అంకగణిత మధ్యమానం", "విస్తృతి", "ప్రామాణిక విచలనం", "వ్యాప్తి"], "answer": 1}, {"id": 48, "orig": 548, "en": "This is not a measure of variability", "te": "ఇది విచలనశీలతా కొలత కాదు", "opts_en": ["Quartile Deviation", "Average Deviation", "Variance", "Median"], "opts_te": ["చతుర్థాంశ విచలనం", "సరాసరి విచలనం", "విస్తృతి", "మధ్యగతం"], "answer": 4}, {"id": 49, "orig": 549, "en": "Arithmetic mean of 16, 18, 20, 22, 24", "te": "16, 18, 20, 22, 24 ల అంకగణిత మధ్యమానం", "opts_en": ["24", "20", "18", "16"], "opts_te": ["24", "20", "18", "16"], "answer": 2}, {"id": 50, "orig": 550, "en": "Formula for finding Quartile deviation", "te": "చతుర్థాంశ విచలనాన్ని కనుగొనే సూత్రం (గమనిక: మూల PDFలో సూత్ర చిహ్నాలు సరిగ్గా రాలేదు)", "opts_en": ["QD =", "QD =", "QD =", "QD ="], "opts_te": ["QD =", "QD =", "QD =", "QD ="], "answer": 3}, {"id": 51, "orig": 551, "en": "Mean of the first ten Natural Numbers", "te": "మొదటి పది సహజ సంఖ్యల మధ్యమానం", "opts_en": ["3.5", "4.5", "5.5", "6.5"], "opts_te": ["3.5", "4.5", "5.5", "6.5"], "answer": 3}, {"id": 52, "orig": 552, "en": "Median of the scores is 14, 17, 16, 12, 8, 4, 24, 22", "te": "14, 17, 16, 12, 8, 4, 24, 22 అనే స్కోర్ల మధ్యగతం", "opts_en": ["14", "16", "15", "17"], "opts_te": ["14", "16", "15", "17"], "answer": 3}, {"id": 53, "orig": 553, "en": "Mode of the given data 7, 6, 8, 9, 10, 7, 6, 9, 8, 10, 7, 8, 7", "te": "ఇచ్చిన దత్తాంశం 7, 6, 8, 9, 10, 7, 6, 9, 8, 10, 7, 8, 7 యొక్క బాహుళకం", "opts_en": ["9", "8", "7", "10"], "opts_te": ["9", "8", "7", "10"], "answer": 3}, {"id": 54, "orig": 554, "en": "In a pie diagram, the sum of the angles of all sectors is", "te": "పై చిత్రంలో అన్ని సెక్టార్ల కోణాల మొత్తం", "opts_en": ["120", "180", "90", "360"], "opts_te": ["120", "180", "90", "360"], "answer": 4}, {"id": 55, "orig": 555, "en": "The following are the marks of a student in various subjects 57, 63, 48, 65, 61. The range is", "te": "వివిధ సబ్జెక్టుల్లో ఒక విద్యార్థి మార్కులు ఇలా ఉన్నాయి 57, 63, 48, 65, 61. వ్యాప్తి ఎంత", "opts_en": ["57", "48", "17", "25"], "opts_te": ["57", "48", "17", "25"], "answer": 3}, {"id": 56, "orig": 556, "en": "The empirical relation between the measures of central tendency", "te": "కేంద్రీయ స్థాన కొలతల మధ్య అనుభావిక సంబంధం", "opts_en": ["Mode = 3 Median – 2 Mean", "Mode = 3 Mean – 2 Median", "Mode = 3 Median + 2 Mean", "Mode = Median – Mean"], "opts_te": ["బాహుళకం = 3 మధ్యగతం – 2 మధ్యమానం", "బాహుళకం = 3 మధ్యమానం – 2 మధ్యగతం", "బాహుళకం = 3 మధ్యగతం + 2 మధ్యమానం", "బాహుళకం = మధ్యగతం – మధ్యమానం"], "answer": 1}, {"id": 57, "orig": 557, "en": "Bar graph among the following", "te": "కింది వాటిలో బార్ గ్రాఫ్ ఏది", "opts_en": ["Frequency polygon", "Cumulative Percentage Frequency Curve", "Histogram", "Circle Graph"], "opts_te": ["పౌనఃపున్య బహుభుజి", "సంచిత శాతం పౌనఃపున్య వక్రరేఖ", "హిస్టోగ్రాం", "వృత్త రేఖాచిత్రం"], "answer": 3}, {"id": 58, "orig": 558, "en": "The Arithmetic Mean of the data 7,10,15,10,8,8,7,3,2,10", "te": "7,10,15,10,8,8,7,3,2,10 దత్తాంశం యొక్క అంకగణిత మధ్యమానం", "opts_en": ["10", "8", "5", "16"], "opts_te": ["10", "8", "5", "16"], "answer": 2}, {"id": 59, "orig": 559, "en": "Q = 80, Q = 20 then Quartile deviation is 3 1 3 = , 1", "te": "Q3 = 80, Q1 = 20 అయితే చతుర్థాంశ విచలనం ఎంత", "opts_en": ["20", "30", "40", "50"], "opts_te": ["20", "30", "40", "50"], "answer": 2}, {"id": 60, "orig": 560, "en": "Difference between the highest value and the lowest value in a data is called", "te": "ఒక దత్తాంశంలో గరిష్ట విలువకు, కనిష్ట విలువకు మధ్య ఉన్న తేడాను ఇలా అంటారు", "opts_en": ["Standard Deviation", "Quartile Deviation", "Mean Deviation", "Range"], "opts_te": ["ప్రామాణిక విచలనం", "చతుర్థాంశ విచలనం", "మధ్యమాన విచలనం", "వ్యాప్తి"], "answer": 4}, {"id": 61, "orig": 561, "en": "This is a derived score", "te": "ఇది ఒక ఉత్పాదిత గణన (Derived Score)", "opts_en": ["Range", "Deviation", "Z -Score", "Mean"], "opts_te": ["వ్యాప్తి", "విచలనం", "జడ్ స్కోరు", "మధ్యమానం"], "answer": 3}, {"id": 62, "orig": 562, "en": "Classification and interpretation of data is called", "te": "దత్తాంశాన్ని వర్గీకరించడం, వ్యాఖ్యానించడాన్ని ఇలా అంటారు", "opts_en": ["Numerology", "Statistics", "Algebra", "Symmetry"], "opts_te": ["సంఖ్యాశాస్త్రం", "సాంఖ్యక శాస్త్రం", "బీజగణితం", "సౌష్టవం"], "answer": 2}, {"id": 63, "orig": 563, "en": "In the formula of Median, ( ) × c, c denotes", "te": "మధ్యగతం సూత్రంలో ( ) × c లో c ఏమిటి తెలుపుతుంది", "opts_en": ["Frequency", "Lower Limit of the Class", "Class - Interval", "Sum of the Frequency"], "opts_te": ["పౌనఃపున్యం", "తరగతి దిగువ హద్దు", "తరగతి అంతరం", "పౌనఃపున్యాల మొత్తం"], "answer": 3}, {"id": 64, "orig": 564, "en": "Mode of the data 10, 20, 30, 40, 50", "te": "10, 20, 30, 40, 50 దత్తాంశం యొక్క బాహుళకం", "opts_en": ["10", "20", "50", "Cannot be determined"], "opts_te": ["10", "20", "50", "నిర్ధారించలేము"], "answer": 4}, {"id": 65, "orig": 565, "en": "This is not related to Graphical representation of data", "te": "ఇది దత్తాంశ రేఖాచిత్ర ప్రదర్శనకు సంబంధించినది కాదు", "opts_en": ["Histogram", "Pie Graph", "Snellen Chart", "Frequency Polygon"], "opts_te": ["హిస్టోగ్రాం", "పై చిత్రం", "స్నెలెన్ చార్టు", "పౌనఃపున్య బహుభుజి"], "answer": 3}, {"id": 66, "orig": 566, "en": "f is equal to", "te": "f దేనికి సమానం", "opts_en": ["C", "N", "m", "d"], "opts_te": ["C", "N", "m", "d"], "answer": 2}, {"id": 67, "orig": 567, "en": "Median of the scores 76, 24, 53, 35, 80, 09, 43", "te": "76, 24, 53, 35, 80, 09, 43 స్కోర్ల మధ్యగతం", "opts_en": ["53", "43", "80", "76"], "opts_te": ["53", "43", "80", "76"], "answer": 2}, {"id": 68, "orig": 568, "en": "This belongs to audio Visual Aid", "te": "ఇది దృశ్య-శ్రవణ సాధనానికి చెందినది", "opts_en": ["Radio", "Television", "News Paper", "Black Board"], "opts_te": ["రేడియో", "టెలివిజన్", "వార్తా పత్రిక", "బ్లాక్ బోర్డు"], "answer": 2}, {"id": 69, "orig": 569, "en": "The word 'Technology' is derived from", "te": "“టెక్నాలజీ” అనే పదం ఈ భాష నుండి ఉద్భవించింది", "opts_en": ["Russian", "English", "Greek", "Persian"], "opts_te": ["రష్యన్", "ఆంగ్లం", "గ్రీకు", "పర్షియన్"], "answer": 3}, {"id": 70, "orig": 570, "en": "“Information for all,” this statement is given by", "te": "“అందరికీ సమాచారం” అనే ప్రవచనాన్ని ఇచ్చినది", "opts_en": ["W.T.O", "W.H.O", "I.L.O", "UNESCO"], "opts_te": ["W.T.O", "W.H.O", "I.L.O", "UNESCO"], "answer": 4}, {"id": 71, "orig": 571, "en": "The word „communis' is derived from this language", "te": "'కమ్యూనిస్' అనే పదం ఈ భాష నుండి ఉద్భవించింది", "opts_en": ["Hindi", "English", "Latin", "Telugu"], "opts_te": ["హిందీ", "ఆంగ్లం", "లాటిన్", "తెలుగు"], "answer": 3}, {"id": 72, "orig": 572, "en": "According to UNESCO, Information Technology is related to these branches.", "te": "యునెస్కో ప్రకారం, సమాచార సాంకేతికత ఈ విభాగాలకు సంబంధించినది", "opts_en": ["Medicine, Technology", "Architecture, Geology", "Technology, Engineering", "Statistics, Data Science"], "opts_te": ["వైద్యం, సాంకేతికత", "ఆర్కిటెక్చర్, భూగర్భశాస్త్రం", "సాంకేతికత, ఇంజనీరింగ్", "సాంఖ్యక శాస్త్రం, డేటా సైన్స్"], "answer": 3}, {"id": 73, "orig": 573, "en": "This belongs to Print Media", "te": "ఇది ముద్రణా మాధ్యమానికి చెందినది", "opts_en": ["Radio", "Television", "Cinema", "News Paper"], "opts_te": ["రేడియో", "టెలివిజన్", "సినిమా", "వార్తా పత్రిక"], "answer": 4}, {"id": 74, "orig": 574, "en": "This belongs to Audio aid", "te": "ఇది శ్రవణ సాధనానికి చెందినది", "opts_en": ["Radio", "Television", "Cinema", "News Paper"], "opts_te": ["రేడియో", "టెలివిజన్", "సినిమా", "వార్తా పత్రిక"], "answer": 1}, {"id": 75, "orig": 575, "en": "The term 'Educational Technology' is derived from the combination of these two words", "te": "“విద్యా సాంకేతిక శాస్త్రం” అనే పదం ఈ రెండు పదాల కలయిక వలన ఏర్పడింది", "opts_en": ["Education, Technology", "Education, Psychology", "Education, Philosophy", "Education, Sociology"], "opts_te": ["విద్య, సాంకేతికత", "విద్య, మనోవిజ్ఞానశాస్త్రం", "విద్య, తత్వశాస్త్రం", "విద్య, సాంఘికశాస్త్రం"], "answer": 1}, {"id": 76, "orig": 576, "en": "The type of communication used in reports, responses to queries and petitions is", "te": "నివేదికలు, ప్రశ్నలకు ప్రత్యుత్తరాలు, అభ్యర్థనలకు ఉపయోగించే సమాచార ప్రసార రకం", "opts_en": ["Horizontal Communication", "Cluster Communication", "Upward Communication", "Star Communication"], "opts_te": ["సమాంతర సమాచార ప్రసారం", "క్లస్టర్ సమాచార ప్రసారం", "ఊర్ధ్వ సమాచార ప్రసారం", "నక్షత్ర సమాచార ప్రసారం"], "answer": 3}, {"id": 77, "orig": 577, "en": "According to Robert Stolorow, the reason for the utilization of technological knowledge in educational system is", "te": "రాబర్ట్ స్టోలరో ప్రకారం, విద్యా వ్యవస్థలో సాంకేతిక పరిజ్ఞానాన్ని ఉపయోగించడానికి గల కారణం", "opts_en": ["Illiteracy", "Acceleration in the generation of New Knowledge", "Poverty and Economic Statutes", "Disparities in the Society"], "opts_te": ["నిరక్షరాస్యత", "నూతన జ్ఞానం ఉత్పత్తి అయ్యే రేటు వేగవంతం కావడం", "పేదరికం మరియు ఆర్థిక స్థితిగతులు", "సమాజంలోని వ్యత్యాసాలు"], "answer": 2}, {"id": 78, "orig": 578, "en": "This is not an objective of Educational Technology", "te": "ఇది విద్యా సాంకేతిక శాస్త్రం యొక్క లక్ష్యం కాదు", "opts_en": ["Creating gap between Teachers and Students", "Provision of modern educational tools", "Creating more self-directed learning opportunities", "Providing Opportunities for more individuals"], "opts_te": ["ఉపాధ్యాయులు, విద్యార్థుల మధ్య అంతరాన్ని సృష్టించడం", "ఆధునిక అభ్యసనా ఉపకరణాలను అందించడం", "స్వయం నిర్దేశిత అభ్యసన అవకాశాలను ఎక్కువగా కల్పించడం", "ఎక్కువమందికి అవకాశాలు కల్పించడం"], "answer": 1}, {"id": 79, "orig": 579, "en": "This is not an example of Print Media", "te": "ఇది ముద్రణా మాధ్యమానికి ఉదాహరణ కాదు", "opts_en": ["News Paper", "Books", "Television", "Posters"], "opts_te": ["వార్తా పత్రిక", "పుస్తకాలు", "టెలివిజన్", "పోస్టర్లు"], "answer": 3}, {"id": 80, "orig": 580, "en": "This characteristic is not required for Educational films used in Education", "te": "విద్యలో ఉపయోగించే విద్యా చలన చిత్రానికి ఈ లక్షణం అవసరం లేదు", "opts_en": ["Must align with curriculum context", "Should not facilitate group learning", "Authenticity is crucial", "Should follow a structured format"], "opts_te": ["పాఠ్యప్రణాళికలోని అంశాలకు అనుగుణంగా ఉండాలి", "సమూహ అభ్యసనానికి దోహదపడకూడదు", "ప్రామాణికత కీలకమైనది", "వ్యవస్థాపిత క్రమ పద్ధతిని అనుసరించాలి"], "answer": 2}, {"id": 81, "orig": 581, "en": "This is not an advantage of Educational film", "te": "ఇది విద్యా చలన చిత్రం యొక్క ప్రయోజనం కాదు", "opts_en": ["Creates interest in studies", "Teach many people at once", "Can't present historical events", "Help in acquiring mental abilities necessary for learning"], "opts_te": ["చదువుపై ఆసక్తిని కలిగిస్తుంది", "ఎక్కువమందికి ఒకేసారి బోధించవచ్చు", "చారిత్రక సంఘటనలను ప్రదర్శించలేదు", "అభ్యసనానికి అవసరమైన మానసిక సామర్థ్యాలను పొందడంలో సహాయపడుతుంది"], "answer": 3}, {"id": 82, "orig": 582, "en": "This is not a limitation of Educational films", "te": "ఇది విద్యా చలన చిత్రాల పరిమితి కాదు", "opts_en": ["Training is required to operate projector", "Some schools do not have necessary resources", "It is very expensive", "Creates interest to students"], "opts_te": ["ప్రొజెక్టర్‌ను ఉపయోగించడానికి తగిన శిక్షణ అవసరం", "అవసరమైన వసతులు కొన్ని పాఠశాలలకు లేవు", "ఇది చాలా ఖర్చుతో కూడుకున్నది", "విద్యార్థులలో ఆసక్తిని పెంపొందిస్తుంది"], "answer": 4}, {"id": 83, "orig": 583, "en": "Incorrect statement on the importance of ICT to teachers", "te": "ఉపాధ్యాయులకు ఐసిటి ప్రాముఖ్యతపై సరికాని ప్రవచనం", "opts_en": ["Creating new course material", "Make abstract concepts easier to understand", "Can provide real life experiences", "Doesn't support the development of teaching methods"], "opts_te": ["కొత్త కోర్సు మెటీరియల్‌ను తయారుచేయడం", "నైరూప్య భావనలను సులభంగా అర్థం చేసుకునేలా చేయడం", "వాస్తవ జీవిత అనుభూతులను కలిగించగలదు", "బోధనా పద్ధతుల అభివృద్ధికి తోడ్పడదు"], "answer": 4}, {"id": 84, "orig": 584, "en": "“Music” comes under this type of teaching technique", "te": "“సంగీతం” ఈ రకమైన బోధనా సాంకేతికత కిందికి వస్తుంది", "opts_en": ["Stimulating Visual learning", "Listening Teaching Method", "Tactile Teaching Method", "Kinesthetic Teaching Method"], "opts_te": ["దృశ్య అభ్యసనాన్ని ప్రేరేపించడం", "శ్రవణ బోధనా పద్ధతి", "స్పర్శ బోధనా పద్ధతి", "గత్యాత్మక బోధనా పద్ధతి"], "answer": 2}, {"id": 85, "orig": 585, "en": "Flash cards come under this type of teaching method", "te": "ఫ్లాష్ కార్డులు ఈ రకమైన బోధనా పద్ధతి కిందికి వస్తాయి", "opts_en": ["Stimulating Visual learning", "Listening Teaching Method", "Tactile Teaching Method", "Kinesthetic Teaching Method"], "opts_te": ["దృశ్య అభ్యసనాన్ని ప్రేరేపించడం", "శ్రవణ బోధనా పద్ధతి", "స్పర్శ బోధనా పద్ధతి", "గత్యాత్మక బోధనా పద్ధతి"], "answer": 1}, {"id": 86, "orig": 586, "en": "This is not a feature of written communication", "te": "ఇది వ్రాత సమాచార ప్రసారం యొక్క లక్షణం కాదు", "opts_en": ["It is clear", "Can't be used as evidence", "It is contextually useful", "It is concise"], "opts_te": ["ఇది స్పష్టంగా ఉంటుంది", "ఆధారంగా ఉపయోగించలేము", "ఇది సందర్భోచితంగా ఉపయోగపడుతుంది", "ఇది సంక్షిప్తంగా ఉంటుంది"], "answer": 2}, {"id": 87, "orig": 587, "en": "In Flander's interaction analysis category method, the category 'Lecturing' comes under this item.", "te": "ఫ్లాండర్స్ పరస్పర చర్యా విశ్లేషణ వర్గ పద్ధతిలో, “ఉపన్యాసం” అనే వర్గం ఈ అంశం కిందికి వస్తుంది", "opts_en": ["Teacher Talk", "Student Talk", "Silence", "Confusion"], "opts_te": ["ఉపాధ్యాయ ప్రసంగం", "విద్యార్థి ప్రసంగం", "మౌనం", "గందరగోళం"], "answer": 1}, {"id": 88, "orig": 588, "en": "In Flander's interaction analysis category method, „student talk response' comes under this item", "te": "ఫ్లాండర్స్ పరస్పర చర్యా విశ్లేషణ వర్గ పద్ధతిలో, 'విద్యార్థి ప్రతిస్పందన ప్రసంగం' ఈ అంశం కిందికి వస్తుంది", "opts_en": ["Teacher Talk", "Student Talk", "Silence", "Confusion"], "opts_te": ["ఉపాధ్యాయ ప్రసంగం", "విద్యార్థి ప్రసంగం", "మౌనం", "గందరగోళం"], "answer": 2}, {"id": 89, "orig": 589, "en": "This is not an advantage of ICT", "te": "ఇది ఐసిటి యొక్క ప్రయోజనం కాదు", "opts_en": ["Increases Motivation to study", "Completely replaces the role of a teacher", "Learning experience has the potential to extend", "Helps to implement personalised learning"], "opts_te": ["చదువుపై ప్రేరణను పెంచుతుంది", "ఉపాధ్యాయుని పాత్రను పూర్తిగా భర్తీ చేస్తుంది", "అభ్యసన అనుభవాన్ని విస్తరించే సామర్థ్యం కలిగి ఉంటుంది", "వ్యక్తిగతీకరించిన అభ్యసనాన్ని అమలు చేయడంలో సహాయపడుతుంది"], "answer": 2}, {"id": 90, "orig": 590, "en": "This is not a part of Multimedia", "te": "ఇది మల్టీమీడియాలో భాగం కాదు", "opts_en": ["Graphics", "Animations", "Videos", "Radio"], "opts_te": ["గ్రాఫిక్స్", "యానిమేషన్లు", "వీడియోలు", "రేడియో"], "answer": 4}, {"id": 91, "orig": 591, "en": "This is not the advantage of Multimedia", "te": "ఇది మల్టీమీడియా యొక్క ప్రయోజనం కాదు", "opts_en": ["Friendly Exchange", "Expensive", "Accessible to audience", "Flexible"], "opts_te": ["స్నేహపూర్వక వినిమయం", "ఖరీదైనది", "ప్రేక్షకులకు అందుబాటులో ఉంటుంది", "అనువైనది"], "answer": 2}, {"id": 92, "orig": 592, "en": "This is an advantage of Multimedia", "te": "ఇది మల్టీమీడియా యొక్క ప్రయోజనం", "opts_en": ["Expensive", "Friendly exchange", "Takes long display loading time", "Compilation Time"], "opts_te": ["ఖరీదైనది", "స్నేహపూర్వక వినిమయం", "ప్రదర్శన లోడింగ్‌కు ఎక్కువ సమయం పడుతుంది", "సంకలన సమయం"], "answer": 2}, {"id": 93, "orig": 593, "en": "This is not a disadvantage of online Education", "te": "ఇది ఆన్‌లైన్ విద్య యొక్క నష్టం కాదు", "opts_en": ["Obscentity falls very easily to young children", "There are many scam sites in the internet", "Hackers may steal person's identity", "Saves time and money"], "opts_te": ["అశ్లీలత చిన్న పిల్లలకు తేలికగా చేరుతుంది", "ఇంటర్నెట్‌లో అనేక మోసపూరిత సైట్లు ఉన్నాయి", "హ్యాకర్లు వ్యక్తి గుర్తింపును దొంగిలించవచ్చు", "సమయం, డబ్బు ఆదా చేస్తుంది"], "answer": 4}, {"id": 94, "orig": 594, "en": "This is not a disadvantage of online Education", "te": "ఇది ఆన్‌లైన్ విద్య యొక్క నష్టం కాదు", "opts_en": ["Malicious persons can enter personal computers", "Some people may get addicted to the internet", "Reduces communication gaps", "There are many antisocial sites on internet"], "opts_te": ["దురుద్దేశపూరిత వ్యక్తులు వ్యక్తిగత కంప్యూటర్లలోకి ప్రవేశించవచ్చు", "కొందరు ఇంటర్నెట్‌కు బానిసలు కావచ్చు", "సమాచార ప్రసార అంతరాలను తగ్గిస్తుంది", "ఇంటర్నెట్‌లో అనేక సంఘవిద్రోహ సైట్లు ఉన్నాయి"], "answer": 3}, {"id": 95, "orig": 595, "en": "This is not a computer language", "te": "ఇది కంప్యూటర్ భాష కాదు", "opts_en": ["Fortran", "Cobol", "Pascal", "Newton"], "opts_te": ["Fortran", "Cobol", "Pascal", "Newton"], "answer": 4}, {"id": 96, "orig": 596, "en": "The device used in second generation computers", "te": "రెండవ తరం కంప్యూటర్లలో ఉపయోగించిన పరికరం", "opts_en": ["Transistors", "Vacuum Tubes", "Integrated circuits", "Artificial Intelligence"], "opts_te": ["ట్రాన్సిస్టర్లు", "వాక్యూమ్ ట్యూబులు", "సమీకృత వలయాలు", "కృత్రిమ మేధస్సు"], "answer": 1}, {"id": 97, "orig": 597, "en": "This is not a characteristic of computers", "te": "ఇది కంప్యూటర్ల లక్షణం కాదు", "opts_en": ["Speed", "Accuracy", "Forgetting", "Reliability"], "opts_te": ["వేగం", "కచ్చితత్వం", "మర్చిపోవడం", "విశ్వసనీయత"], "answer": 3}, {"id": 98, "orig": 598, "en": "This is not a characteristic of computers", "te": "ఇది కంప్యూటర్ల లక్షణం కాదు", "opts_en": ["Memory", "Fatigue", "Reliability", "Repetetion"], "opts_te": ["జ్ఞాపకశక్తి", "అలసట", "విశ్వసనీయత", "పునరావృతం"], "answer": 2}, {"id": 99, "orig": 599, "en": "This is not a characteristic of computers", "te": "ఇది కంప్యూటర్ల లక్షణం కాదు", "opts_en": ["Versatality", "Diligency", "Automation", "Emotional"], "opts_te": ["బహుముఖ ప్రజ్ఞ", "శ్రద్ధాశీలత", "స్వయంచాలకత", "భావోద్వేగం"], "answer": 4}, {"id": 100, "orig": 600, "en": "This is not an input device", "te": "ఇది ఇన్‌పుట్ పరికరం కాదు", "opts_en": ["Key board", "Mouse", "Scanner", "Speaker"], "opts_te": ["కీబోర్డు", "మౌస్", "స్కానర్", "స్పీకర్"], "answer": 4}, {"id": 101, "orig": 601, "en": "This is not an output device", "te": "ఇది అవుట్‌పుట్ పరికరం కాదు", "opts_en": ["Monitor", "Printer", "Speaker", "Mouse"], "opts_te": ["మానిటర్", "ప్రింటర్", "స్పీకర్", "మౌస్"], "answer": 4}, {"id": 102, "orig": 602, "en": "This is not a type of memory in ICT", "te": "ఇది ఐసిటిలో ఒక రకమైన మెమరీ కాదు", "opts_en": ["Cache memory", "Primary memory", "Elementary memory", "Secondary memory"], "opts_te": ["కాష్ మెమరీ", "ప్రాథమిక మెమరీ", "ఎలిమెంటరీ మెమరీ", "ద్వితీయ మెమరీ"], "answer": 3}, {"id": 103, "orig": 603, "en": "Microsoft's widely used slideshow software", "te": "మైక్రోసాఫ్ట్ యొక్క విస్తృతంగా ఉపయోగించే స్లైడ్‌షో సాఫ్ట్‌వేర్", "opts_en": ["MS WORD", "MS EXCEL", "MS POWERPOINT", "MS DOS"], "opts_te": ["MS WORD", "MS EXCEL", "MS POWERPOINT", "MS DOS"], "answer": 3}, {"id": 104, "orig": 604, "en": "The network works across large areas such as countries and continents", "te": "దేశాలు, ఖండాల వంటి పెద్ద ప్రాంతాలలో పనిచేసే నెట్‌వర్క్", "opts_en": ["LAN", "MAN", "CAN", "WAN"], "opts_te": ["LAN", "MAN", "CAN", "WAN"], "answer": 4}, {"id": 105, "orig": 605, "en": "The network that works in small areas like a building or a campus", "te": "భవనం లేదా క్యాంపస్ వంటి చిన్న ప్రాంతాలలో పనిచేసే నెట్‌వర్క్", "opts_en": ["MAN", "LAN", "GAN", "WAN"], "opts_te": ["MAN", "LAN", "GAN", "WAN"], "answer": 2}, {"id": 106, "orig": 606, "en": "This is not a type of computer network", "te": "ఇది కంప్యూటర్ నెట్‌వర్క్ రకం కాదు", "opts_en": ["LAN", "MAN", "CAN", "WAN"], "opts_te": ["LAN", "MAN", "CAN", "WAN"], "answer": 3}, {"id": 107, "orig": 607, "en": "In computer network, this is not an advantage of Intranet", "te": "కంప్యూటర్ నెట్‌వర్క్‌లో, ఇది ఇంట్రానెట్ యొక్క ప్రయోజనం కాదు", "opts_en": ["Communication", "Collaboration", "Affordable", "Time Consuming"], "opts_te": ["సమాచార ప్రసారం", "సహకారం", "తక్కువ ఖర్చు", "ఎక్కువ సమయం తీసుకుంటుంది"], "answer": 4}, {"id": 108, "orig": 608, "en": "Father of modern computer", "te": "ఆధునిక కంప్యూటర్ పితామహుడు", "opts_en": ["Charles Babbage", "Stephen Hawking", "Pascal", "Leibniz"], "opts_te": ["చార్లెస్ బాబేజ్", "స్టీఫెన్ హాకింగ్", "పాస్కల్", "లీబ్నిజ్"], "answer": 1}, {"id": 109, "orig": 609, "en": "Logarithms were invented by", "te": "లాగరిథమ్‌లను కనుగొన్నది", "opts_en": ["Pascal", "Napier", "Leibniz", "Babbage"], "opts_te": ["పాస్కల్", "నేపియర్", "లీబ్నిజ్", "బాబేజ్"], "answer": 2}, {"id": 110, "orig": 610, "en": "Shortcut key useful for closing window/ shut down", "te": "విండోను మూసివేయడానికి/షట్ డౌన్ చేయడానికి ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Alt +F 4", "Ctrl + Y", "Ctrl + Z", "Ctrl + X"], "opts_te": ["Alt + F4", "Ctrl + Y", "Ctrl + Z", "Ctrl + X"], "answer": 1}, {"id": 111, "orig": 611, "en": "Shortcut key useful for spellcheck", "te": "స్పెల్ చెక్ కోసం ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["F 1", "F 2", "F 5", "F 7"], "opts_te": ["F1", "F2", "F5", "F7"], "answer": 4}, {"id": 112, "orig": 612, "en": "Shortcut key useful for underlining", "te": "అండర్‌లైన్ చేయడానికి ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + S", "Ctrl + U", "Ctrl + P", "Ctrl + K"], "opts_te": ["Ctrl + S", "Ctrl + U", "Ctrl + P", "Ctrl + K"], "answer": 2}, {"id": 113, "orig": 613, "en": "Shortcut key useful to print a file", "te": "ఫైల్‌ను ప్రింట్ చేయడానికి ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + S", "Ctrl + U", "Ctrl + P", "Ctrl + K"], "opts_te": ["Ctrl + S", "Ctrl + U", "Ctrl + P", "Ctrl + K"], "answer": 3}, {"id": 114, "orig": 614, "en": "Shortcut key useful to save a file", "te": "ఫైల్‌ను సేవ్ చేయడానికి ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + S", "Ctrl + U", "Ctrl + P", "Ctrl + K"], "opts_te": ["Ctrl + S", "Ctrl + U", "Ctrl + P", "Ctrl + K"], "answer": 1}, {"id": 115, "orig": 615, "en": "Shortcut key useful for right alignment of a text", "te": "టెక్స్ట్‌ను కుడివైపు సర్దుబాటు చేయడానికి ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + C", "Ctrl + D", "Ctrl + R", "Ctrl + L"], "opts_te": ["Ctrl + C", "Ctrl + D", "Ctrl + R", "Ctrl + L"], "answer": 3}, {"id": 116, "orig": 616, "en": "Shortcut key useful for „Select all'", "te": "'అన్నీ ఎంచుకో' కోసం ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + B", "Ctrl + A", "Ctrl + C", "Ctrl + E"], "opts_te": ["Ctrl + B", "Ctrl + A", "Ctrl + C", "Ctrl + E"], "answer": 2}, {"id": 117, "orig": 617, "en": "Shortcut key used to copy a file", "te": "ఫైల్‌ను కాపీ చేయడానికి ఉపయోగించే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + A", "Ctrl + B", "Ctrl + C", "Ctrl + D"], "opts_te": ["Ctrl + A", "Ctrl + B", "Ctrl + C", "Ctrl + D"], "answer": 3}, {"id": 118, "orig": 618, "en": "Shortcut key useful to open a new blank document", "te": "కొత్త ఖాళీ డాక్యుమెంట్‌ను తెరవడానికి ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + A", "Ctrl + B", "Ctrl + C", "Ctrl + N"], "opts_te": ["Ctrl + A", "Ctrl + B", "Ctrl + C", "Ctrl + N"], "answer": 4}, {"id": 119, "orig": 619, "en": "Shortcut key useful for central alignment", "te": "మధ్యలో సర్దుబాటు కోసం ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["Ctrl + A", "Ctrl + B", "Ctrl + C", "Ctrl + E"], "opts_te": ["Ctrl + A", "Ctrl + B", "Ctrl + C", "Ctrl + E"], "answer": 4}, {"id": 120, "orig": 620, "en": "Shortcut key useful for Help", "te": "సహాయం (Help) కోసం ఉపయోగపడే షార్ట్‌కట్ కీ", "opts_en": ["F 1", "F 4", "F 5", "F 7"], "opts_te": ["F1", "F4", "F5", "F7"], "answer": 1}, {"id": 121, "orig": 621, "en": "Full form of CPU", "te": "CPU పూర్తి రూపం", "opts_en": ["Computer Parts Unity", "Central Processing Unit", "Code Processing Unit", "Compact Parts Units"], "opts_te": ["Computer Parts Unity", "Central Processing Unit", "Code Processing Unit", "Compact Parts Units"], "answer": 2}, {"id": 122, "orig": 622, "en": "Full form of CD", "te": "CD పూర్తి రూపం", "opts_en": ["Compact Disc", "Computer Disk", "Compact Device", "Computer Device"], "opts_te": ["Compact Disc", "Computer Disk", "Compact Device", "Computer Device"], "answer": 1}, {"id": 123, "orig": 623, "en": "Full form of WWW", "te": "WWW పూర్తి రూపం", "opts_en": ["Word Wide Web", "Wide Web World", "World Wide Web", "World Web Wide"], "opts_te": ["Word Wide Web", "Wide Web World", "World Wide Web", "World Web Wide"], "answer": 3}, {"id": 124, "orig": 624, "en": "Full form of DOS", "te": "DOS పూర్తి రూపం", "opts_en": ["Desk Operating Sound", "Disk Operating Sound", "Desk Operating System", "Disk Operating System"], "opts_te": ["Desk Operating Sound", "Disk Operating Sound", "Desk Operating System", "Disk Operating System"], "answer": 4}, {"id": 125, "orig": 625, "en": "Full form of LAN", "te": "LAN పూర్తి రూపం", "opts_en": ["Local Area Network", "Local Aided Network", "Local Advanced Network", "List Automated Network"], "opts_te": ["Local Area Network", "Local Aided Network", "Local Advanced Network", "List Automated Network"], "answer": 1}, {"id": 126, "orig": 626, "en": "Full form of IC", "te": "IC పూర్తి రూపం", "opts_en": ["Internet Circuit", "Integrated Circuit", "Internal Circuit", "International Circuit"], "opts_te": ["Internet Circuit", "Integrated Circuit", "Internal Circuit", "International Circuit"], "answer": 2}, {"id": 127, "orig": 627, "en": "Full form of RAM", "te": "RAM పూర్తి రూపం", "opts_en": ["Read All Memory", "Random Access Manufacturing", "Read Access Memory", "Random Access Memory"], "opts_te": ["Read All Memory", "Random Access Manufacturing", "Read Access Memory", "Random Access Memory"], "answer": 4}, {"id": 128, "orig": 628, "en": "Full form of HTTP", "te": "HTTP పూర్తి రూపం", "opts_en": ["Hyper Text Transfer Protocol", "Hyper Test Transfer Protocol", "Hyper Text Transfer Publishing", "Higher Test Transfer Protocol"], "opts_te": ["Hyper Text Transfer Protocol", "Hyper Test Transfer Protocol", "Hyper Text Transfer Publishing", "Higher Test Transfer Protocol"], "answer": 1}, {"id": 129, "orig": 629, "en": "Full form of ICT", "te": "ICT పూర్తి రూపం", "opts_en": ["Information and Communication Technology", "International Computer Training", "International Computer Technology", "Information and Communication Training"], "opts_te": ["సమాచారం మరియు సమాచార ప్రసార సాంకేతికత", "అంతర్జాతీయ కంప్యూటర్ శిక్షణ", "అంతర్జాతీయ కంప్యూటర్ సాంకేతికత", "సమాచారం మరియు సమాచార ప్రసార శిక్షణ"], "answer": 1}, {"id": 130, "orig": 630, "en": "E-mail means", "te": "ఈ-మెయిల్ అనగా", "opts_en": ["Energetic Mail", "Electronic Mail", "Emerging Mail", "Entertainment Mail"], "opts_te": ["శక్తివంతమైన మెయిల్", "ఎలక్ట్రానిక్ మెయిల్", "ఆవిర్భవిస్తున్న మెయిల్", "వినోద మెయిల్"], "answer": 2}];
+let lang = 'en';
+let current = 0;
+let answers = new Array(DATA.length).fill(null);
+
+const stemBox = document.getElementById('stemBox');
+const optsBox = document.getElementById('optsBox');
+const qIndex = document.getElementById('qIndex');
+const qStatus = document.getElementById('qStatus');
+const progressFill = document.getElementById('progressFill');
+const scorePill = document.getElementById('scorePill');
+const navGrid = document.getElementById('navGrid');
+const quizArea = document.getElementById('quizArea');
+const resultCard = document.getElementById('resultCard');
+
+function answeredCount(){ return answers.filter(a=>a!==null).length; }
+function correctCount(){ return answers.filter((a,i)=> a!==null && a===DATA[i].answer-1).length; }
+
+function renderLangToggle(){
+  document.querySelectorAll('#langToggle button').forEach(b=>{
+    b.classList.toggle('active', b.dataset.lang===lang);
+  });
+}
+document.getElementById('langToggle').addEventListener('click', e=>{
+  const b = e.target.closest('button'); if(!b) return;
+  lang = b.dataset.lang; renderLangToggle(); renderQuestion();
+});
+
+function textFor(en, te){
+  if(lang==='en') return `<span class="en">${en}</span>`;
+  if(lang==='te') return `<span class="te" style="display:inline;font-size:1em;color:inherit;">${te||en}</span>`;
+  return `<span class="en">${en}</span>${te?`<span class="te">${te}</span>`:''}`;
+}
+
+function renderQuestion(){
+  const q = DATA[current];
+  qIndex.textContent = `Question ${current+1} of ${DATA.length}`;
+  stemBox.innerHTML = textFor(q.en, q.te);
+  optsBox.innerHTML = '';
+  const picked = answers[current];
+  const letters = ['A','B','C','D'];
+  q.opts_en.forEach((optEn, idx)=>{
+    const div = document.createElement('div');
+    div.className = 'opt';
+    let extra = '';
+    if(picked!==null){
+      div.classList.add('disabled');
+      if(idx === q.answer-1) div.classList.add('correct');
+      else if(idx === picked) div.classList.add('wrong');
+    }
+    if(picked===idx) div.classList.add('selected');
+    div.innerHTML = `<div class="letter">${letters[idx]}</div><div class="opt-text">${textFor(optEn, q.opts_te[idx])}</div>`;
+    div.addEventListener('click', ()=>{
+      if(answers[current]!==null) return;
+      answers[current] = idx;
+      renderQuestion();
+      renderGrid();
+      updateHeader();
+    });
+    optsBox.appendChild(div);
+  });
+  qStatus.textContent = picked===null ? '' : (picked===q.answer-1 ? 'Correct ✓' : 'Incorrect ✕');
+  document.getElementById('prevBtn').disabled = current===0;
+  document.getElementById('nextBtn').textContent = current===DATA.length-1 ? 'Finish' : 'Next ▶';
+}
+
+function updateHeader(){
+  progressFill.style.width = (answeredCount()/DATA.length*100)+'%';
+  scorePill.textContent = `Score: ${correctCount()}/${answeredCount()}`;
+}
+
+function renderGrid(){
+  navGrid.innerHTML = '';
+  DATA.forEach((q,i)=>{
+    const b = document.createElement('button');
+    b.className = 'gridbtn';
+    b.textContent = i+1;
+    if(i===current) b.classList.add('current');
+    if(answers[i]!==null){
+      b.classList.add(answers[i]===q.answer-1 ? 'correctmark' : 'wrongmark');
+    }
+    b.addEventListener('click', ()=>{ current=i; renderQuestion(); renderGrid(); });
+    navGrid.appendChild(b);
+  });
+}
+
+document.getElementById('prevBtn').addEventListener('click', ()=>{
+  if(current>0){ current--; renderQuestion(); renderGrid(); }
+});
+document.getElementById('nextBtn').addEventListener('click', ()=>{
+  if(current<DATA.length-1){ current++; renderQuestion(); renderGrid(); }
+  else { showResult(); }
+});
+document.getElementById('jumpBtn').addEventListener('click', ()=>{
+  const v = parseInt(document.getElementById('jumpInput').value,10);
+  if(v>=1 && v<=DATA.length){ current=v-1; renderQuestion(); renderGrid(); }
+});
+
+function showResult(){
+  quizArea.classList.add('hidden');
+  resultCard.classList.remove('hidden');
+  document.getElementById('finalScore').textContent = `${correctCount()}/${DATA.length}`;
+  const unanswered = DATA.length - answeredCount();
+  document.getElementById('finalSub').textContent = unanswered>0 ? `${unanswered} question(s) left unanswered` : 'All questions answered';
+}
+document.getElementById('reviewBtn').addEventListener('click', ()=>{
+  quizArea.classList.remove('hidden');
+  resultCard.classList.add('hidden');
+  current = 0; renderQuestion(); renderGrid();
+});
+document.getElementById('restartBtn').addEventListener('click', ()=>{
+  answers = new Array(DATA.length).fill(null);
+  current = 0;
+  quizArea.classList.remove('hidden');
+  resultCard.classList.add('hidden');
+  renderQuestion(); renderGrid(); updateHeader();
+});
+
+renderQuestion();
+renderGrid();
+updateHeader();
+</script>
+</body>
+</html>
